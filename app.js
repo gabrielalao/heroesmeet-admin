@@ -23,7 +23,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 //Database connection
 // mongoose.connect('');
-mongoose.connect('mongodb+srv://webgurusllc:Webgurusllc1234@systalsoft-cd9uf.mongodb.net/test?ssl=true',
+mongoose.connect('mongodb+srv://heros-meet:Hello1234@cluster0-9ipaq.mongodb.net/test',
     {
          useNewUrlParser: true,
          useUnifiedTopology: true,
