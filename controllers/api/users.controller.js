@@ -58,7 +58,7 @@ const sendOTP = async(req, res) => {
           try {
             var otp = (Math.floor(Math.random() * 10000) + 10000).toString().substring(1);
             formData.otp = otp;
-            TwilioEvents.sendOtp(user.phoneNum,otp)
+            TwilioEvents.sendOtp(formData.phoneNum,otp)
 
           } catch (mysql_error) {
               res.status(200).json(mysql_error);
