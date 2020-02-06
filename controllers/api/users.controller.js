@@ -5,7 +5,7 @@ const jwt = require('jsonwebtoken');
 const { Validator } = require('node-input-validator');
 const bcrypt = require('bcrypt');
 var User = require('../../models/userModel.js');
-var TwilioEvents = require('../common/twilioSetup');
+var TwilioEvents = require('../../common/twilioSetup');
 
 const createHash = (password) => {
     return bcrypt.hashSync(password, bcrypt.genSaltSync(10), null);
