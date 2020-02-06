@@ -5,6 +5,7 @@ const jwt = require('jsonwebtoken');
 const { Validator } = require('node-input-validator');
 const bcrypt = require('bcrypt');
 var User = require('../../models/userModel.js');
+var TwilioEvents = require('../common/twilioSetup');
 
 const createHash = (password) => {
     return bcrypt.hashSync(password, bcrypt.genSaltSync(10), null);
@@ -43,6 +44,27 @@ const signup = async(req, res) => {
             }
         }
     });
+};
+
+const sendOTP = async(req, res) => {
+  const formData = req.body;
+  const validate = new Validator(formData, {
+      phoneNum: 'required|integer'
+  });
+  await validate.check().then((matched) => {
+      if (!matched) {
+          res.status(200).json({statusCode: 400, message: validate.errors});
+      } else {
+          try {
+            var otp = (Math.floor(Math.random() * 10000) + 10000).toString().substring(1);
+            formData.otp = otp;
+            TwilioEvents.sendOtp(user.phoneNum,otp)
+
+          } catch (mysql_error) {
+              res.status(200).json(mysql_error);
+          }
+      }
+  });
 };
 
 
@@ -89,6 +111,6 @@ const login = async(req, res) => {
 
 module.exports = {
     signup,
-    login 
-
+    login ,
+    sendOTP
 };
