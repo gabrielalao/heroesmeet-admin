@@ -27,7 +27,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 
 //Database connection
-mongoose.connect('mongodb+srv://heros-meet:Hello%401a@cluster0-9ipaq.mongodb.net/test',
+mongoose.connect('mongodb+srv://heros-meet:Hello%401a@cluster0-9ipaq.mongodb.net/test?retryWrites=true&w=majority',
     {
          useNewUrlParser: true,
          useUnifiedTopology: true,
