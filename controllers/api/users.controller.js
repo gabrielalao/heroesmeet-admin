@@ -15,7 +15,7 @@ const signup = async(req, res) => {
     const formData = req.body;
     const validate = new Validator(formData, {
         full_name: 'required|string',
-        dob: 'required|datetime',
+        dob: 'required',
         phoneNum: 'required|integer',
         password: 'required|string',
         verified: 'required|integer|between:0,1',
