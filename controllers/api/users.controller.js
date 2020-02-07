@@ -55,15 +55,15 @@ const sendOTP = async(req, res) => {
       if (!matched) {
           res.status(200).json({statusCode: 400, message: validate.errors});
       } else {
-          try {
-            var otp = (Math.floor(Math.random() * 10000) + 10000).toString().substring(1);
-            formData.otp = otp;
-            TwilioEvents.sendOtp(formData.phoneNum,otp)
-            res.status(200).json({statusCode:200, message: "Otp has been sent to your mobile number." });
+        try {
+          var otp = (Math.floor(Math.random() * 10000) + 10000).toString().substring(1);
+          formData.otp = otp;
+          TwilioEvents.sendOtp(formData.phoneNum,otp)
+          res.status(200).json({statusCode:200, message: "Otp has been sent to your mobile number." });
 
-          } catch (mysql_error) {
-              res.status(200).json(mysql_error);
-          }
+        } catch (mysql_error) {
+            res.status(200).json(mysql_error);
+        }
       }
   });
 };
