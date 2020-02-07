@@ -22,7 +22,7 @@ const signup = async(req, res) => {
         //otp: 'required|integer',
         gender: 'required|string',
         category: 'required|integer',
-        email: 'required|email'
+        email: 'email'
     });
     await validate.check().then((matched) => {
         if (!matched) {
