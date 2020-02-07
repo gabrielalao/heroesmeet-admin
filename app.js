@@ -11,8 +11,11 @@ var usersRouter = require('./routes/users');
 var cors = require('cors')
 
 var app = express();
+
+require('dotenv').config({ path: process.env });
+
 const mongoose = require('mongoose');
-require('dotenv').config();
+
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
