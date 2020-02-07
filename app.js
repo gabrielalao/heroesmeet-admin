@@ -33,11 +33,17 @@ mongoose.connect('mongodb+srv://heros-meet:Hello%401a@cluster0-9ipaq.mongodb.net
          useUnifiedTopology: true,
          useCreateIndex: true
     });
-var db = mongoose.connection;
-db.on('error', console.error.bind(console, 'connection error:'));
-db.once('open', function callback () {
-  console.log("Mongodb Connected");
+
+mongoose.connection.once('open', function(){
+  console.log('Conection has been made!');
+  }).on('error', function(error){
+  console.log('Error is: ', error);
 });
+// var db = mongoose.connection;
+// db.on('error', console.error.bind(console, 'connection error:'));
+// db.once('open', function callback () {
+//   console.log("Mongodb Connected");
+// });
 
 //mongoose.Promise = global.Promise;
 
