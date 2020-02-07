@@ -9,7 +9,7 @@ var TwilioEvents = {
    	sendOtp: function(phNum,otp){
       	console.log('new message',phNum)
       	client.messages.create({
-		    body: 'Otp from heros-meet app'+ ' ' +otp,
+		    body: '4 Digits Security Code from Heroes Meet '+ ' ' +otp,
 		    to: phNum,  // Text this number
 		    from: '+12034576210' // From a valid Twilio number
 		})
