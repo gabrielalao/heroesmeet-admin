@@ -7,7 +7,7 @@ const bcrypt = require('bcrypt');
 var User = require('../../models/userModel.js');
 var Image = require('../../models/imageModel.js');
 var moment = require('moment');
-
+var TwilioEvents = require('../../common/twilioSetup');
 
 const createHash = (password) => {
     return bcrypt.hashSync(password, bcrypt.genSaltSync(10), null);
@@ -96,17 +96,21 @@ const sendOTP = async(req, res) => {
   const validate = new Validator(formData, {
       phoneNum: 'required|integer'
   });
+
+  // console.log('testing phone number is stored ******* ',User.findOne({phoneNum:formData.phoneNum}));
   await validate.check().then((matched) => {
       if (!matched) {
           res.status(200).json({statusCode: 400, message: validate.errors});
       } else {
         try {
+          console.log('inside try ****** ')
           var otp = (Math.floor(Math.random() * 10000) + 10000).toString().substring(1);
           formData.otp = otp;
           TwilioEvents.sendOtp(formData.phoneNum,otp)
           res.status(200).json({statusCode:200, message: "Otp has been sent to your mobile number.", data:{otp:otp} });
 
         } catch (mysql_error) {
+          console.log('inside catch ****** ')
             res.status(200).json(mysql_error);
         }
       }
